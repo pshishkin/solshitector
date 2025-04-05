@@ -1,6 +1,7 @@
 use anyhow::Result;
 use structopt::StructOpt;
 use std::path::PathBuf;
+use crate::scratches::scratch_v1_ipfs_block_downloader::IpfsBlockDownloader;
 
 #[derive(StructOpt)]
 #[structopt(name = "ipfs_block_downloader", about = "Download Solana blocks from IPFS")]
@@ -17,7 +18,7 @@ struct Opt {
 #[tokio::main]
 async fn main() -> Result<()> {
     let opt = Opt::from_args();
-    let downloader = super::IpfsBlockDownloader::new();
+    let downloader = IpfsBlockDownloader::new();
     downloader.download_block(opt.block_number, opt.output).await?;
     Ok(())
 } 
