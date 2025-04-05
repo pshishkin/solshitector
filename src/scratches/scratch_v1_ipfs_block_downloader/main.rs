@@ -1,7 +1,7 @@
 use anyhow::Result;
 use structopt::StructOpt;
 use std::path::PathBuf;
-use crate::scratches::scratch_v1_ipfs_block_downloader::IpfsBlockDownloader;
+use solshitector::scratches::scratch_v1_ipfs_block_downloader::IpfsBlockDownloader;
 
 #[derive(StructOpt)]
 #[structopt(name = "ipfs_block_downloader", about = "Download Solana blocks from IPFS")]

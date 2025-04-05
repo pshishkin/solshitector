@@ -12,7 +12,13 @@ solana-sdk = "1.17"
 tokio = { version = "1.0", features = ["full"] }
 anyhow = "1.0"
 structopt = "0.3"
+futures = "0.3"
+bytes = "1.0"
 
 [[bin]]
 name = "scratch_v1_ipfs_block_downloader"
 path = "src/scratches/scratch_v1_ipfs_block_downloader/main.rs"
+
+[[bin]]
+name = "scratch_v2_hello_world"
+path = "src/scratches/scratch_v2_hello_world/main.rs"
