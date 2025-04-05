@@ -4,7 +4,6 @@ use std::path::PathBuf;
 use std::fs::File;
 use std::io::Write;
 use futures::StreamExt;
-use bytes::Bytes;
 
 pub struct IpfsBlockDownloader {
     client: IpfsClient,

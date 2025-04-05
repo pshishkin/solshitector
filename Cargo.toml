@@ -14,6 +14,10 @@ anyhow = "1.0"
 structopt = "0.3"
 futures = "0.3"
 bytes = "1.0"
+reqwest = { version = "0.11", features = ["json"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+dotenv = "0.15"
 
 [[bin]]
 name = "scratch_v1_ipfs_block_downloader"
