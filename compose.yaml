@@ -12,7 +12,7 @@ services:
     entrypoint: ["/usr/local/bin/ipfs_entrypoint.sh"]
     healthcheck:
       test: ["CMD", "ipfs", "id"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
-      retries: 3
+      retries: 9
       start_period: 5s
