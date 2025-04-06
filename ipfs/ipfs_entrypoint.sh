@@ -42,16 +42,28 @@ ipfs config --json Gateway '{
 
 # Configure Swarm for better connectivity
 echo "Configuring Swarm for network connectivity..."
+# Configure Swarm to listen on all interfaces
+ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/udp/4001/quic-v1", "/ip6/::/tcp/4001", "/ip6/::/udp/4001/quic-v1"]'
+
 # Enable hole punching for NAT traversal
 ipfs config --json Swarm.EnableHolePunching true
-# Remove address filters to allow connections from all addresses
+
+# Remove address filters to allow connections from all addresses 
 ipfs config --json Swarm.AddrFilters '[]'
+
+# Configure connection manager for better performance
+ipfs config --json Swarm.ConnMgr '{
+  "Type": "basic",
+  "LowWater": 100,
+  "HighWater": 400,
+  "GracePeriod": "20s"
+}'
 
 # Reset bootstrap nodes to ensure we're using the latest ones
 echo "Resetting bootstrap nodes..."
 ipfs bootstrap rm --all
 ipfs bootstrap add --default
 
-# Start the IPFS daemon
+# Start the IPFS daemon with connection options
 echo "Starting IPFS daemon..."
-exec ipfs daemon --migrate=true --enable-gc
+exec ipfs daemon --migrate=true --enable-gc --routing=dht

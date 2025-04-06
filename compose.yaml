@@ -3,7 +3,8 @@ services:
     image: ipfs/kubo:latest
     container_name: ipfs_node
     ports:
-      - "4001:4001"  # Swarm port for peer connections
+      - "4001:4001"  # Swarm TCP port for peer connections
+      - "4001:4001/udp"  # Swarm UDP port for QUIC connections
       - "127.0.0.1:5001:5001"  # API port for local interactions
       - "127.0.0.1:8080:8080"  # Gateway port for serving content
     volumes:
