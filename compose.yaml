@@ -10,3 +10,9 @@ services:
       - ./ipfs_data:/data/ipfs
       - ./scripts/ipfs_entrypoint.sh:/usr/local/bin/ipfs_entrypoint.sh
     entrypoint: ["/usr/local/bin/ipfs_entrypoint.sh"]
+    healthcheck:
+      test: ["CMD", "ipfs", "id"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

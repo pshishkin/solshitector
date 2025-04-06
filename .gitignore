@@ -20,4 +20,5 @@ target/
 
 # Added by cargo
 
-/target
+.idea/
+ipfs_data/
