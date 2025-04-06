@@ -2,13 +2,14 @@
 
 # This script discovers an IPFS peer ID from a remote host and suggests how to update your .env file
 
-# Get hostname from argument or prompt for it
+# Check if hostname was provided as argument
 if [ -z "$1" ]; then
-    read -p "Enter remote hostname with IPFS node: " HOSTNAME
-else
-    HOSTNAME="$1"
+    echo "❌ Error: Hostname argument is required"
+    echo "Usage: $0 <hostname>"
+    exit 1
 fi
 
+HOSTNAME="$1"
 echo "Connecting to $HOSTNAME to discover IPFS peer ID..."
 
 # Check SSH connection
