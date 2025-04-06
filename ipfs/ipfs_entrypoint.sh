@@ -64,6 +64,26 @@ echo "Resetting bootstrap nodes..."
 ipfs bootstrap rm --all
 ipfs bootstrap add --default
 
+# Add servers from IPFS_SERVERS environment variable
+if [ ! -z "$IPFS_SERVERS" ]; then
+  echo "Adding servers from IPFS_SERVERS list..."
+  
+  # Split the comma-separated string
+  IFS=','
+  for server_entry in $IPFS_SERVERS; do
+    # Extract hostname and peer ID
+    HOSTNAME=$(echo $server_entry | cut -d':' -f1)
+    PEER_ID=$(echo $server_entry | cut -d':' -f2)
+    
+    if [ ! -z "$HOSTNAME" ] && [ ! -z "$PEER_ID" ]; then
+      echo "Adding server $HOSTNAME with peer ID $PEER_ID to bootstrap list"
+      MULTIADDR="/dns4/$HOSTNAME/tcp/4001/p2p/$PEER_ID"
+      ipfs bootstrap add "$MULTIADDR"
+    fi
+  done
+  unset IFS
+fi
+
 # Start the IPFS daemon with connection options
 echo "Starting IPFS daemon..."
 exec ipfs daemon --migrate=true --enable-gc --routing=dht

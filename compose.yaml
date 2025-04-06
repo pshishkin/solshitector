@@ -10,6 +10,8 @@ services:
     volumes:
       - ./ipfs/data:/data/ipfs
       - ./ipfs/ipfs_entrypoint.sh:/usr/local/bin/ipfs_entrypoint.sh
+    environment:
+      - IPFS_SERVERS=${IPFS_SERVERS:-}  # Comma-separated list of hostname:peerid pairs
     entrypoint: ["/usr/local/bin/ipfs_entrypoint.sh"]
     healthcheck:
       test: ["CMD", "ipfs", "id"]
