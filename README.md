@@ -10,7 +10,7 @@ if it's allright, continue on your local dev machine
 
 ### on your local dev machine
 ```sh
-./scripts/ipfs_setup_server_connection.sh <server_hostname>
+./scripts/ipfs_setup_server_connection.sh <server_hostname> # and upd your .env accordingly
 docker compose up -d
 ./scripts/test_ipfs.sh # it may fail on second part, but should work on first
 ```
