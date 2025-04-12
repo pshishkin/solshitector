@@ -82,8 +82,8 @@ echo "Disabling automatic relay service..."
 ipfs config --json Swarm.RelayService.Enabled false
 
 # Configure AutoNAT service for reachability discovery
-echo "Setting AutoNAT service mode to 'public'..."
-ipfs config --json AutoNAT.ServiceMode '"public"'
+echo "Setting AutoNAT service mode to 'enabled'..."
+ipfs config --json AutoNAT.ServiceMode '"enabled"'
 
 # Reset bootstrap nodes to ensure we're using the latest ones
 echo "Resetting bootstrap nodes..."
