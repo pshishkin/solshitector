@@ -1,5 +1,5 @@
 services:
-  ipfs:
+  ipfs_node:
     image: ipfs/kubo:latest
     container_name: ipfs_node
     ports:

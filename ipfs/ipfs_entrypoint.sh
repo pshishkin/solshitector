@@ -45,8 +45,8 @@ echo "Configuring Swarm for network connectivity..."
 # Configure Swarm to listen on all interfaces
 ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/udp/4001/quic-v1", "/ip6/::/tcp/4001", "/ip6/::/udp/4001/quic-v1"]'
 
-# Disable hole punching for NAT traversal
-ipfs config --json Swarm.EnableHolePunching false
+# Enable hole punching for NAT traversal
+ipfs config --json Swarm.EnableHolePunching true
 
 # Configure address filters to block private IP ranges
 echo "Configuring address filters to prevent scanning private networks..."
@@ -72,17 +72,18 @@ ipfs config --json Swarm.ConnMgr '{
   "GracePeriod": "20s"
 }'
 
-# Disable automatic relay client to prevent excessive connection attempts
-echo "Disabling automatic relay client..."
-ipfs config --json Swarm.RelayClient.Enabled false
+# Enable automatic relay client for NAT traversal
+echo "Enabling automatic relay client..."
+ipfs config --json Swarm.RelayClient.Enabled true
+ipfs config --json Swarm.RelayClient.StaticRelays '[]' # Keep empty unless specific relays are needed
 
 # Disable automatic relay service
 echo "Disabling automatic relay service..."
 ipfs config --json Swarm.RelayService.Enabled false
 
-# Disable AutoNAT service to prevent excessive connection attempts
-echo "Disabling AutoNAT service..."
-ipfs config --json AutoNAT.ServiceMode "disabled"
+# Configure AutoNAT service for reachability discovery
+echo "Setting AutoNAT service mode to 'public'..."
+ipfs config --json AutoNAT.ServiceMode "public"
 
 # Reset bootstrap nodes to ensure we're using the latest ones
 echo "Resetting bootstrap nodes..."
