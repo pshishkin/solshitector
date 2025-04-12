@@ -45,8 +45,8 @@ echo "Configuring Swarm for network connectivity..."
 # Configure Swarm to listen on all interfaces
 ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/udp/4001/quic-v1", "/ip6/::/tcp/4001", "/ip6/::/udp/4001/quic-v1"]'
 
-# Enable hole punching for NAT traversal
-ipfs config --json Swarm.EnableHolePunching true
+# Disable hole punching for NAT traversal
+ipfs config --json Swarm.EnableHolePunching false
 
 # Configure address filters to block private IP ranges
 echo "Configuring address filters to prevent scanning private networks..."
